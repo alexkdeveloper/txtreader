@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=txtreader
+Exec=txtreader
+Icon=kaa.kalexal.TXTReader
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
