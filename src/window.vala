@@ -42,6 +42,7 @@ namespace Txtreader {
         private GLib.File current_file;
         private List<string> list;
         private string directory_path;
+        private string last_folder;
         private string item;
 		public Window (Gtk.Application app) {
 			Object (application: app);
@@ -80,11 +81,15 @@ namespace Txtreader {
 	}
 
     private void on_add_clicked () {
-        var file_chooser = new FileChooserDialog ("Add a book", this,
-                                      FileChooserAction.OPEN,
-                                      "_Cancel", ResponseType.CANCEL,
-                                      "_Open", ResponseType.ACCEPT);
+        var file_chooser = new FileChooserDialog ("Add a book", this, FileChooserAction.OPEN, "_Cancel", ResponseType.CANCEL, "_Open", ResponseType.ACCEPT);
+        FileFilter filter = new FileFilter ();
+		file_chooser.set_filter (filter);
+		filter.add_mime_type ("text/plain");
+        if (last_folder != null) {
+            file_chooser.set_current_folder (last_folder);
+        }
         if (file_chooser.run () == ResponseType.ACCEPT) {
+        last_folder = file_chooser.get_current_folder ();
             string path_to_file = file_chooser.get_filename();
             GLib.File add_file = GLib.File.new_for_path(path_to_file);
         try {
