@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=txtreader
+Name=TXTReader
 Exec=txtreader
 Icon=kaa.kalexal.TXTReader
 Terminal=false
